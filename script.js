@@ -193,13 +193,25 @@ function gameLoop() {
   requestAnimationFrame(gameLoop);
 }
 
-// Start or reset the game on click
+// Start or reset the game on click or touch
 canvas.addEventListener('click', function() {
   if (isGameOver) {
     resetGame();
     isGameStarted = true;
   } else if (!isGameStarted) {
     isGameStarted = true;
+  }
+});
+
+// Touch screen support
+canvas.addEventListener('touchstart', function() {
+  if (isGameOver) {
+    resetGame();
+    isGameStarted = true;
+  } else if (!isGameStarted) {
+    isGameStarted = true;
+  } else if (isGameStarted && !isGameOver) {
+    bird.flap();
   }
 });
 
